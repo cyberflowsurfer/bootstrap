@@ -3,4 +3,7 @@ echo "------------------------------------------------------------------------"
 echo "ubuntu/screen/setup.sh"
 echo "------------------------------------------------------------------------"
 
-ln -sb ~/bootstrap/ubuntu/screen/.screenrc ~/.
+echo "Linking .screenrc"
+ln -sb ~/bootstrap/ubuntou/screen/.screenrc ~/.
+
+screen-v

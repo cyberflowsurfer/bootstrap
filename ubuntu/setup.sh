@@ -20,5 +20,6 @@ if [ "$yn" = "y" ]; then
   echo "export EMAIL=" $email >> ~/.bash_profile
 fi
 
+~/bootstrap/ubuntu/git/setup.sh
 ~/bootstrap/ubuntu/screen/setup.sh
 
