@@ -1,9 +1,11 @@
 #!/bin/bash
-echo "------------------------------------------------------------------------"
-echo "ubuntu/screen/setup.sh"
-echo "------------------------------------------------------------------------"
+#
+# Synopsis:  Configure screen multi-windowing
+# More Info: https://www.digitalocean.com/community/articles/how-to-install-and-use-screen-on-an-ubuntu-cloud-server
+#
+echo "  O $0"
 
-echo "Linking .screenrc"
+echo "    * Linking .screenrc"
 ln -sb ~/bootstrap/ubuntou/screen/.screenrc ~/.
 
-screen-v
+echo "    * `screen -v`"

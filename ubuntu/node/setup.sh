@@ -1,14 +1,13 @@
 #!/bin/bash
-# Simple setup.sh for configuring Ubuntu 12.04 LTS EC2 instance
-# for headless setup. 
-
-# Install nvm: node-version manager
-# https://github.com/creationix/nvm
-sudo apt-get install -y git-core
-
+#
+# Synopsis:  Install and configure NodeJS environment
+# More info: https://github.com/creationix/nvm
+#
+echo "  O $0"
 
 NVM_DIR="$HOME/.nvm"
 
+echo "    * Install NVM"
 if [ -d "$NVM_DIR" ]; then
   echo "=> NVM is already installed in $NVM_DIR, trying to update"
   echo -ne "\r=> "
@@ -18,8 +17,7 @@ else
   git clone https://github.com/creationix/nvm.git $NVM_DIR  
 fi
 
-echo
-
+echo "    * Update profile to load nvm"
 # Detect profile file, .bash_profile has precedence over .profile
 if [ ! -z "$1" ]; then
   PROFILE="$1"
@@ -30,7 +28,8 @@ else
 	PROFILE="$HOME/.profile"
   fi
 fi
-
+echo "      - Located bash profile: $PROFILE"
+echo "      - Construct source string"
 SOURCE_STR="[[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"  # This loads NVM"
 
 if [ -z "$PROFILE" ] || [ ! -f "$PROFILE" ] ; then
@@ -54,26 +53,24 @@ if [ -z "$PROFILE" ] || [ ! -f "$PROFILE" ] ; then
 fi
 
 if ! grep -qc 'nvm.sh' $PROFILE; then
-  echo "=> Appending source string to $PROFILE"
+  echo "      - Appending source string to $PROFILE"
   echo "# Added by bootstrap/ubuntu/node.sh" >> "$PROFILE"
   echo $SOURCE_STR >> "$PROFILE"
 else
-  echo "=> Source string already in $PROFILE"
+  echo "      - $PROFILE already sources nvm.sh"
 fi
 
-echo "=> Close and reopen your terminal to start using NVM"
-
 # Load nvm and install latest production node
+echo "    * Load NVM"
 source $HOME/.nvm/nvm.sh
 nvm install v0.10.12
 nvm use v0.10.12
 
-# Install jshint to allow checking of JS code within emacs
-# http://jshint.com/
+echo "    * Install npm"
 sudo apt-get npm
+echo "    * Install emacs jshint (http://jshint.com/)"
 npm install -g jshint
 
-# Install rlwrap to provide libreadline features with node
-# See: http://nodejs.org/api/repl.html#repl_repl
+echo "    * Install rlrwrap (http://nodejs.org/api/repl.html#repl_repl)"
 sudo apt-get install -y rlwrap
 

@@ -63,6 +63,14 @@ export PATH=/usr/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH # Heroku: https://toolbelt.heroku.com/standalone
-# User identity (created by ubuntu/setup
-export USERNAME= cyberflowsurfer
-export EMAIL= syberflowsurfer@gmail.com
+
+# Added by bootstrap/ubuntu/node.sh
+[[ -s /home/ubuntu/.nvm/nvm.sh ]] && . /home/ubuntu/.nvm/nvm.sh # This loads NVM
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Added by bootstrap/ubuntu/rails/setup.sh
+[[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"
+# Added by bootstrap/ubuntu/rails/setup.sh
+[[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"
+# Added by bootstrap/ubuntu/rails/setup.sh
+[[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"

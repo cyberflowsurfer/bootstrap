@@ -1,18 +1,25 @@
 #!/bin/bash
-echo "------------------------------------------------------------------------"
-echo "git/setup.sh"
-echo "------------------------------------------------------------------------"
+# Installs and configures git 
+#
+echo "  O $0"
 
-if [ -n "$USERNAME" ] ;then
-    echo "$USERNAME not set; run ubuntu/setup.sh"
-    exit
+echo "    * Install git-core"
+sudo apt-get install -y git-core
+
+if [ -z "$GIT_USERNAME" ]; then
+    read -p "Enter your git user name: " GIT_USERNAME
+    echo "# Created by $0" >> ~/.bash_profile
+    echo "export GIT_USERNAME=$GIT_USERNAME" >> ~/.bash_profile
 fi
 
-if [ -n "$EMAIL" ] ;then
-    echo "$EMAIL not set; run ubuntu/setup.sh"
-    exit
+if [ -z "$GIT_EMAIL ]; then
+    read -p "Enter your git email: " GIT_EMAIL
+    echo "# Created by $0 " >> ~/.bash_profile
+    echo "export GIT_EMAIL=$GIT_EMAIL" >> ~/.bash_profile
 fi
 
-git config --global user.name $USERNAME
-git config --global user.email $EMAIL
+echo "    * git config"
+git config --global user.name $GIT_USERNAME
+git config --global user.email $GIT_EMAIL
+git config --list
 

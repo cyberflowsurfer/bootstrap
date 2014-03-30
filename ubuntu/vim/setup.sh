@@ -1,8 +1,9 @@
 #!/bin/bash
-echo "------------------------------------------------------------------------"
-echo "ubuntu/vim/setup.sh"
-echo "------------------------------------------------------------------------"
+echo "  O $0"
 
-echo "Linking .vimrc"
+echo "    * Get vim"
+sudo apt-get install vim
+
+echo "    * Linking .vimrc"
 ln -sb ~/bootstrap/ubuntu/vim/.vimrc ~/.
 
