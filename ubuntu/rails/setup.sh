@@ -6,12 +6,13 @@
 echo "  O =$0"
 RUBY_VERSION=ruby
 RUBY_VERSION= ruby-1.9.3-p545
-RAILS_VERSION=3.1.0
+RAILS_VERSION=3.2.13
 RAILS_GEMS=(cucumber)
-RVM_URL=https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer 
+RVM_URL=https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer
 
 echo "    * Install required packages"
 sudo apt-get install build-essential git-core
+sudo apt-get install libsqlite3-dev
 
 if [ -d ~/.rvm/ ]; then
     echo "    * RVM already installed"
@@ -25,14 +26,19 @@ else
     echo "      - Installed RVM `rvm --version`"
 fi
 
+rvm get head && rvm reload
 rvm requirements
 
 echo "    * Use ruby: $RUBY_VERSION"
 rvm install $RUBY_VERSION
 rvm use --default $RUBY_VERSION
 
-echo "    * Have RVM update gems"
+echo "    *RVM update of gems"
 rvm rubygems current
+
+if [ ! -e ~/.gemrc]
+    cp ~/bootstrap/rails/.gemrc ~/.gemrc
+fi
 
 echo "    * Install rails: $RAILS_VERSION"
 sudo gem install rails -v $RAILS_VERSION
