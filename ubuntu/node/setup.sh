@@ -2,10 +2,12 @@
 #
 # Synopsis:  Install and configure NodeJS environment
 # More info: https://github.com/creationix/nvm
+#            https://www.digitalocean.com/community/articles/how-to-install-node-js-with-nvm-node-version-manager-on-a-vps
 #
 echo "  O $0"
 
 NVM_DIR="$HOME/.nvm"
+NODE_VERSION="0.10.13"
 
 echo "    * Install NVM"
 if [ -d "$NVM_DIR" ]; then
@@ -52,19 +54,19 @@ if [ -z "$PROFILE" ] || [ ! -f "$PROFILE" ] ; then
   exit
 fi
 
-if ! grep -qc 'nvm.sh' $PROFILE; then
+if ! grep -q 'nvm.sh' "$PROFILE"; then
   echo "      - Appending source string to $PROFILE"
   echo "# Added by bootstrap/ubuntu/node.sh" >> "$PROFILE"
   echo $SOURCE_STR >> "$PROFILE"
 else
   echo "      - $PROFILE already sources nvm.sh"
 fi
-
+n
 # Load nvm and install latest production node
 echo "    * Load NVM"
 source $HOME/.nvm/nvm.sh
-nvm install v0.10.12
-nvm use v0.10.12
+nvm install $NODE_VERSION
+nvm use v0.10.13
 
 echo "    * Install npm"
 sudo apt-get npm
@@ -74,3 +76,4 @@ npm install -g jshint
 echo "    * Install rlrwrap (http://nodejs.org/api/repl.html#repl_repl)"
 sudo apt-get install -y rlwrap
 
+npm install -g express 

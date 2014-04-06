@@ -76,3 +76,5 @@ export PATH=/usr/local/heroku/bin:$PATH # Heroku: https://toolbelt.heroku.com/st
 [[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"
 # Created by /home/ubuntu/bootstrap/ubuntu/git/setup.sh
 export GIT_USERNAME=Seth Hawthorne
+# Created by /home/ubuntu/bootstrap/ubuntu/git/setup.sh
+export GIT_USERNAME=Seth Hawthorne

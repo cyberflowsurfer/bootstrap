@@ -6,6 +6,9 @@ echo "-----------------------------------------------------------------------"
 echo "ubuntu/setup.sh"
 echo "-----------------------------------------------------------------------"
 
+sudo apt-get update
+sudo apt-get upgrade
+
 # Set execute permission for all nested setup.sh files 
 find . -name "setup.sh" -exec chmod +x {} \;
 
