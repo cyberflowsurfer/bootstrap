@@ -19,11 +19,13 @@ if [ -d ~/.rvm/ ]; then
 else
     echo "    * Fetch RVM from ($RVM_URL)"
     bash -s stable < <(curl -s $RVM_URL)
-    echo "      - Update .bash_profile"
-    echo "# Added by bootstrap/ubuntu/rails/setup.sh" >> ~/.bash_profile
-    echo '[[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"' >> ~/.bash_profile
-    source ~/.rvm/scripts/rvm
-    echo "      - Installed RVM `rvm --version`"
+    if ! grep -q 'rvm' "$PROFILE"; then    
+        echo "      - Update .bash_profile"
+        echo "# Added by $0" >> ~/.bash_profile
+        echo '[[ -s "~/.rvm/scripts/rvm" ]] && source "~/.rvm/scripts/rvm"' >> ~/.bash_profile
+        source ~/.rvm/scripts/rvm
+        echo "      - Installed RVM `rvm --version`"
+    fi
 fi
 
 rvm get head && rvm reload

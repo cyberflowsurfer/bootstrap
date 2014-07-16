@@ -66,7 +66,7 @@ n
 echo "    * Load NVM"
 source $HOME/.nvm/nvm.sh
 nvm install $NODE_VERSION
-nvm use v0.10.13
+nvm use "v$NODE_VERSION"
 
 echo "    * Install npm"
 sudo apt-get npm
