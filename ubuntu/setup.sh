@@ -9,7 +9,7 @@ echo "-----------------------------------------------------------------------"
 sudo apt-get update
 sudo apt-get upgrade
 
-# Set execute permission for all nested setup.sh files 
+# Set execute permission for all nested setup.sh files
 find . -name "setup.sh" -exec chmod +x {} \;
 
 # Install core components
@@ -26,8 +26,7 @@ do
   fi
 done
 
-echo "  O Done"
+echo "  O Done "
 echo
 echo "      To set up other components execute the setup.sh script in the"
 echo "      corresponding directory"
-
